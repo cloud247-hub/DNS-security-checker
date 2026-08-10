@@ -23,32 +23,7 @@ The site is fully static. Browser-side JavaScript queries Cloudflare's public DN
 
 > Note: The MTA-STS check in this version verifies the `_mta-sts` TXT record only. It does not fetch and validate the HTTPS policy file.
 
-## GitHub Pages
-
-1. Create a GitHub repository.
-2. Upload all files in this directory to the repository root.
-3. In GitHub, open **Settings → Pages**.
-4. Under **Build and deployment**, select **Deploy from a branch**.
-5. Select your main branch and `/ (root)`.
-6. Save.
-
-Because all assets are referenced with relative URLs, the site works both as a user/organization site and under a project path such as `https://username.github.io/domain-security-checker/`.
-
-## Local testing
-
-You can serve it with any static HTTP server, for example:
-
-```bash
-python3 -m http.server 8080
-```
-
-Then open `http://localhost:8080/`.
 
 ## Privacy
 
 Domain names entered into the checker are sent from the browser to Cloudflare's public DNS resolver in order to perform DNS lookups. The app itself stores no server-side data because there is no backend.
-
-
-## Actionable remediation
-
-Failed or weak checks include **How to resolve** guidance, step-by-step remediation, safe DNS templates, copy buttons, and warnings where provider-specific values are required. SPF and DKIM templates intentionally use placeholders when the app cannot safely infer the outbound sender or signing key. DMARC guidance follows a phased monitoring → quarantine → reject rollout.
