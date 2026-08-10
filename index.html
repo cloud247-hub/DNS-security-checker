@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Check DNSSEC, MX, SPF, DKIM, DMARC, MTA-STS, TLS-RPT, CAA and DNS records for any domain." />
+  <meta name="theme-color" content="#07111f" />
+  <title>DomainGuard — DNS & Email Security Checker</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="DomainGuard home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" role="img"><path d="M16 2.5 27 7v8.2c0 6.7-4.1 11.8-11 14.3C9.1 27 5 21.9 5 15.2V7l11-4.5Z" fill="currentColor"/><path d="m11.4 16.2 3 3.1 6.6-7" fill="none" stroke="#07111f" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span>DomainGuard</span>
+      </a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="#checker">Checker</a>
+        <a href="#checks">Checks</a>
+        <a href="#about">About</a>
+      </nav>
+      <div class="privacy-pill"><span class="dot"></span> Live public DNS</div>
+    </header>
+
+    <main>
+      <section class="hero" id="checker">
+        <div class="hero-copy">
+          <p class="eyebrow">DNS & email security diagnostics</p>
+          <h1>See what protects<br /><span>your domain.</span></h1>
+          <p class="lede">Check DNSSEC, mail routing and sender authentication in one clear report. No account. No API key.</p>
+        </div>
+
+        <form id="scanForm" class="scan-card" autocomplete="off">
+          <label for="domainInput">Domain name</label>
+          <div class="domain-row">
+            <span class="input-icon" aria-hidden="true">◎</span>
+            <input id="domainInput" name="domain" type="text" inputmode="url" placeholder="example.com" spellcheck="false" required />
+            <button class="primary-button" id="scanButton" type="submit">
+              <span>Run check</span>
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="advanced-row">
+            <label class="selector-label" for="dkimSelector">DKIM selector <span>(optional)</span></label>
+            <input id="dkimSelector" type="text" placeholder="e.g. selector1, google, s1" spellcheck="false" />
+            <label class="toggle"><input id="scanCommonSelectors" type="checkbox" checked /><span></span> Scan common selectors</label>
+          </div>
+          <p class="form-note">Queries are sent directly from your browser to Cloudflare's public DNS-over-HTTPS resolver.</p>
+        </form>
+      </section>
+
+      <section id="loading" class="loading-panel hidden" aria-live="polite">
+        <div class="spinner"></div>
+        <div><strong>Checking domain security…</strong><span id="loadingText">Resolving DNS records</span></div>
+      </section>
+
+      <section id="errorPanel" class="error-panel hidden" role="alert"></section>
+
+      <section id="results" class="results hidden" aria-live="polite">
+        <div class="results-head">
+          <div>
+            <p class="eyebrow">Security report</p>
+            <h2 id="resultDomain">example.com</h2>
+            <p id="scanTime" class="muted"></p>
+          </div>
+          <div class="score-wrap">
+            <div class="score-ring" id="scoreRing"><span id="scoreNumber">0</span><small>/100</small></div>
+            <div><strong id="scoreLabel">Checking</strong><span>Domain posture</span></div>
+          </div>
+        </div>
+
+        <div id="summaryGrid" class="summary-grid"></div>
+
+        <div class="content-grid">
+          <div>
+            <section class="panel findings-panel">
+              <div class="panel-head">
+                <div><p class="section-kicker">What matters</p><h3>Findings</h3></div>
+                <span id="findingCount" class="count-badge">0</span>
+              </div>
+              <div id="findingsList" class="findings-list"></div>
+            </section>
+
+            <section class="panel" id="checks">
+              <div class="panel-head">
+                <div><p class="section-kicker">Full breakdown</p><h3>Security checks</h3></div>
+                <button id="expandAll" class="ghost-button" type="button">Expand all</button>
+              </div>
+              <div id="checksList" class="checks-list"></div>
+            </section>
+          </div>
+
+          <aside>
+            <section class="panel compact-panel">
+              <div class="panel-head"><div><p class="section-kicker">Infrastructure</p><h3>DNS overview</h3></div></div>
+              <dl id="dnsOverview" class="overview-list"></dl>
+            </section>
+
+            <section class="panel compact-panel">
+              <div class="panel-head"><div><p class="section-kicker">Mail flow</p><h3>MX servers</h3></div></div>
+              <div id="mxList" class="mini-list"></div>
+            </section>
+
+            <section class="panel compact-panel export-card">
+              <div class="export-icon">↓</div>
+              <div><h3>Export report</h3><p>Save the current scan as JSON for documentation or troubleshooting.</p></div>
+              <button id="exportJson" class="secondary-button" type="button">Download JSON</button>
+            </section>
+          </aside>
+        </div>
+      </section>
+
+      <section class="features" id="about">
+        <div class="features-title"><p class="eyebrow">One scan, multiple layers</p><h2>Checks that matter for domain trust</h2></div>
+        <div class="feature-grid">
+          <article><span>01</span><h3>DNS integrity</h3><p>DNSSEC validation, authoritative name servers, address records and CAA.</p></article>
+          <article><span>02</span><h3>Email authentication</h3><p>MX, SPF, DKIM and DMARC with plain-language explanations, remediation steps and copy-ready DNS templates.</p></article>
+          <article><span>03</span><h3>Mail transport</h3><p>MTA-STS and SMTP TLS reporting records for stronger transport security visibility.</p></article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>DomainGuard</span>
+      <p>Client-side DNS diagnostics. Results reflect public DNS at scan time.</p>
+    </footer>
+  </div>
+  <script src="./app.js" defer></script>
+</body>
+</html>
