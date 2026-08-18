@@ -181,36 +181,3 @@ footer p { color:var(--muted); font-size:11px; }
   footer { padding:25px 18px; flex-direction:column; align-items:flex-start; gap:5px; }
   .check-detail { padding-left:22px; }
 }
-
-
-/* Support / coffee card */
-.coffee-section { max-width:1180px; margin:0 auto 80px; }
-.coffee-card { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(280px,.7fr); gap:36px; align-items:center; padding:30px 32px; border-radius:18px; background:var(--bg); color:#fff; box-shadow:0 24px 60px rgba(2,13,28,.14); position:relative; overflow:hidden; }
-.coffee-card::after { content:""; position:absolute; width:260px; height:260px; border-radius:50%; right:-110px; top:-120px; border:1px solid rgba(103,232,197,.12); box-shadow:0 0 0 45px rgba(103,232,197,.035),0 0 0 90px rgba(103,232,197,.02); pointer-events:none; }
-.coffee-copy { display:grid; grid-template-columns:56px 1fr; gap:18px; align-items:start; position:relative; z-index:1; }
-.coffee-icon { width:56px; height:56px; display:grid; place-items:center; border-radius:14px; background:rgba(103,232,197,.12); border:1px solid rgba(103,232,197,.18); font-size:27px; }
-.coffee-copy .eyebrow { color:var(--accent); margin-bottom:5px; }
-.coffee-copy h2 { margin:0 0 8px; font-size:27px; letter-spacing:-.035em; }
-.coffee-copy p:last-child { margin:0; max-width:650px; color:#a9b8ca; font-size:13px; line-height:1.65; }
-.coffee-action { position:relative; z-index:1; display:grid; gap:12px; padding:18px; border-radius:14px; background:rgba(255,255,255,.055); border:1px solid rgba(255,255,255,.08); }
-.coffee-price { display:flex; justify-content:space-between; gap:14px; align-items:baseline; }
-.coffee-price strong { font-size:24px; letter-spacing:-.03em; color:#fff; }
-.coffee-price span { font-size:10px; color:#9fb0c5; text-align:right; }
-.coffee-button { min-height:48px; border-radius:9px; background:var(--accent); color:var(--bg); display:flex; align-items:center; justify-content:center; gap:10px; padding:0 16px; font-size:13px; font-weight:800; transition:transform .15s ease,background .15s ease; }
-.coffee-button:hover { background:#8af0d4; transform:translateY(-1px); }
-.coffee-button svg { width:18px; }
-.coffee-note { margin:0; color:#8fa1b6; font-size:10px; line-height:1.5; }
-.coffee-note code { color:#bfd0e1; }
-
-@media (max-width:940px) {
-  .coffee-section { margin-left:12px; margin-right:12px; }
-  .coffee-card { grid-template-columns:1fr; gap:22px; }
-}
-@media (max-width:680px) {
-  .coffee-section { margin-bottom:45px; }
-  .coffee-card { padding:24px 20px; }
-  .coffee-copy { grid-template-columns:1fr; }
-  .coffee-icon { width:50px; height:50px; }
-  .coffee-price { align-items:flex-start; flex-direction:column; gap:3px; }
-  .coffee-price span { text-align:left; }
-}

@@ -29,7 +29,7 @@ body{background:var(--cloud-page)!important;color:var(--cloud-ink)!important;lin
 .cloud-hero-copy>p:last-child{max-width:760px;margin:22px 0 0;color:#c8d2dc;font-size:clamp(1.02rem,2vw,1.18rem);line-height:1.55}
 .tool-section{padding:58px 0 34px}
 .cloud-panel{background:var(--cloud-surface)!important;border:1px solid var(--cloud-line)!important;border-radius:var(--cloud-radius)!important;box-shadow:0 2px 0 rgba(6,26,47,.02)!important}
-.more-tools-section{padding:0 0 88px}
+.more-tools-section{padding:0 0 28px}
 .more-tools-card{display:flex;align-items:center;justify-content:space-between;gap:30px;padding:34px;border-radius:var(--cloud-radius);background:linear-gradient(135deg,var(--cloud-navy),var(--cloud-navy-2));color:#fff;box-shadow:var(--cloud-shadow)}
 .more-tools-card .cloud-eyebrow{margin-bottom:8px}
 .more-tools-card h2{margin:0;font-size:clamp(1.7rem,3.5vw,2.3rem);letter-spacing:-.035em}
@@ -125,3 +125,10 @@ footer:not(.cloud-footer){display:none!important}
 .cloud-hero .scan-card{padding:28px!important}
 .cloud-hero .scan-card .form-note{margin-bottom:0}
 @media(max-width:620px){.cloud-hero .scan-card{padding:22px!important}}
+
+
+/* Exact Secure File Sharing coffee section */
+:root{--navy:#061a2f;--navy-2:#0a2745;--yellow:#fad63a;--yellow-2:#f1c400;--yellow-soft:#fff9df;--line:#e4e8ee;--vipps:#ff5b24;--radius:22px;--shadow:0 18px 55px rgba(6,26,47,.10)}
+.coffee-section{padding:0 0 88px}.coffee-card{padding:34px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:28px;border:1px solid #efd982;border-radius:var(--radius);background:#fff9e2}.coffee-card .eyebrow{margin:0 0 10px;color:#8b6c00;font-size:.75rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase}.coffee-icon{width:68px;height:68px;display:grid;place-items:center;border-radius:18px;background:var(--yellow);font-size:2rem}.coffee-copy h2{margin:0;font-size:clamp(1.8rem,4vw,2.45rem);letter-spacing:-.04em}.coffee-copy p:last-child{margin:8px 0 0;color:#6c6452}.coffee-action{display:flex;align-items:center;gap:15px}.coffee-action strong{font-size:1.3rem;white-space:nowrap}.vipps-button{min-height:50px;padding:0 20px;display:inline-flex;align-items:center;justify-content:center;border-radius:13px;color:#fff;background:var(--vipps);font-weight:850;text-decoration:none;white-space:nowrap}.vipps-button:hover{filter:brightness(.95)}
+@media(max-width:900px){.coffee-card{grid-template-columns:auto 1fr}.coffee-action{grid-column:1/-1;justify-content:flex-start}}
+@media(max-width:620px){.coffee-card{grid-template-columns:1fr;padding:25px}.coffee-action{grid-column:auto;flex-direction:column;align-items:stretch}.coffee-action strong{font-size:1.2rem}}
